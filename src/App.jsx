@@ -19,10 +19,10 @@ const App = () => {
   const [selectedMovie, setSelectedMovie] = useState(null); // Movie selected by the user
 
   const onMovieSelect = async (imdbID) => {
-    const API_KEY = "71ea1253"; // Your API key
+    const API_KEY = "71ea1253"; // Use Your API key
     try {
       const response = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
-      setSelectedMovie(response.data); // Set the selected movie details
+      setSelectedMovie(response.data); 
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
@@ -30,9 +30,9 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Header setMovieList={setMovieList} /> {/* Pass setMovieList to Header */}
+      <Header setMovieList={setMovieList} /> 
       {selectedMovie ? (
-        <MovieInfo movie={selectedMovie} /> // Show detailed movie info if selected
+        <MovieInfo movie={selectedMovie} />
       ) : (
         <MovieListContainer>
           {movieList?.length
@@ -40,7 +40,7 @@ const App = () => {
                 <MovieComponent
                   key={movie.imdbID}
                   movie={movie}
-                  onMovieSelect={onMovieSelect} // Handle movie selection
+                  onMovieSelect={onMovieSelect} 
                 />
               ))
             : "Enter the movie Name"}
