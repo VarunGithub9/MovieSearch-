@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';  // <-- Import axios
+import axios from 'axios'; 
 import Header from './components/Header';
 import styled from 'styled-components';
 import MovieComponent from './components/MovieComponent';
