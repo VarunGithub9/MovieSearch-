@@ -19,7 +19,7 @@ const App = () => {
   const [selectedMovie, setSelectedMovie] = useState(null); // Movie selected by the user
 
   const onMovieSelect = async (imdbID) => {
-    const API_KEY = "71ea1253"; // Use Your API key
+    const API_KEY = "71ea1253"; // Use Your API key for ethical development 
     try {
       const response = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
       setSelectedMovie(response.data); 
