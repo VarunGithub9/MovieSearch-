@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
 import Header from './components/Header';
 import styled from 'styled-components';
 import MovieComponent from './components/MovieComponent';
@@ -15,24 +15,45 @@ const MovieListContainer = styled.div`
 `;
 
 const App = () => {
-  const [movieList, setMovieList] = useState([]); // List of movies from search
-  const [selectedMovie, setSelectedMovie] = useState(null); // Movie selected by the user
+  const [movieList, setMovieList] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const onMovieSelect = async (imdbID) => {
-    const API_KEY = "71ea1253"; // Use Your API key for ethical development 
+    const API_KEY = "71ea1253";
     try {
       const response = await axios.get(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`);
-      setSelectedMovie(response.data); 
+      setSelectedMovie(response.data);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
   };
 
+  const handleSearch = (movies) => {
+    setMovieList(movies); 
+    setSelectedMovie(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Header setMovieList={setMovieList} /> 
+      <Header setMovieList={handleSearch} />
+      
       {selectedMovie ? (
-        <MovieInfo movie={selectedMovie} />
+        <>
+          <button
+            onClick={() => setSelectedMovie(null)} 
+            style={{
+              padding: "10px",
+              backgroundColor: "white",
+              color: "black",
+              borderRadius: "5px",
+              margin: "20px",
+              cursor: "pointer"
+            }}
+          >
+            Back to Search Results
+          </button>
+          <MovieInfo movie={selectedMovie} />
+        </>
       ) : (
         <MovieListContainer>
           {movieList?.length
@@ -40,10 +61,10 @@ const App = () => {
                 <MovieComponent
                   key={movie.imdbID}
                   movie={movie}
-                  onMovieSelect={onMovieSelect} 
+                  onMovieSelect={onMovieSelect}
                 />
               ))
-            : "Enter the movie Name"}
+            : "Enter a movie name to search"}
         </MovieListContainer>
       )}
     </div>
