@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_KEY = "71ea1253"; // Your API key
+const API_KEY = "71ea1253";
 const Header = ({ setMovieList }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [timeoutID, setTimeoutID] = useState(null);
@@ -9,7 +9,7 @@ const Header = ({ setMovieList }) => {
   const fetchData = async (searchString) => {
     try {
       const response = await axios.get(`https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`);
-      setMovieList(response.data.Search); // Update movie list with search results
+      setMovieList(response.data.Search); 
     } catch (error) {
       console.error("Error fetching data:", error);
     }
