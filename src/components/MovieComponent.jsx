@@ -12,7 +12,6 @@ const MovieContainer = styled.div`
   transition: transform 0.3s ease;
 `;
 
-// Adjusted image styles for better fit
 const CoverImg = styled.img`
   height: 400px; // Adjust to your desired height
   width: 100%;
